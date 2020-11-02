@@ -17,8 +17,8 @@ class Humanoid {
         this.color = color
         this.width = width
         this.height = height
-        this.gravity = 0.55
-        this.gravitySpeed = 1
+        this.gravity = 2.5
+        // this.gravitySpeed = 0
         this.alive = true
     }
 
@@ -43,7 +43,6 @@ class Obstacle {
     }
 }
 
-const floor = new Obstacle(0, 480, "green", 1600, 25)
 
 
 document.addEventListener('keydown', function(evt) {
@@ -56,35 +55,53 @@ document.addEventListener('keydown', function(evt) {
     }
 })
 
+function floorCollision(obj) {
+    console.log('floor')
+    console.log(obj.y)
+    console.log(floor.y)
+    if (obj.y > 330) {
+        obj.y = 330;
+        obj.gravity = 0;
+    } else {
+        obj.gravity = 2.5;
+    }
+        // console.log('floor')
+        
+    } 
+    // if (obj.y > 400) {
+    //     hero.gravity = 2.5
+    //     obj.y += hero.gravity
+    // }
+        // gravity = 2.5
+    // } else if (obj.y = floor.y){
+    //     gravity = 0;
+    
 function rePaint(){
-    let gravity = 2.5;
-    // clear off the entire canva
+    // let gravity = 2.5;
+    // clear off the entire canvas
     ctx.clearRect(0,0, gameArea.width, gameArea.height)
     // hero.y += gravity;
     // render the hero and the enemy
+    // hero.y = 401
     hero.render()
     floor.render()
     enemy.render()
+    // floorCollision(hero)
+    hero.y += hero.gravity
     floorCollision(hero)
-    hero.y += gravity
     // if (enemy.alive)
-    // {enemy.render()
     // }
     // collision()
 }
 
-setInterval(rePaint, 1000/60)
 
-const hero = new Humanoid(50, 400, "red", 40, 80)
+
+const floor = new Obstacle(0, 400, "green", 1600, 100)
+const hero = new Humanoid(50, 300, "red", 40, 80)
 const enemy = new Humanoid(800, 400, "blue", 40, 80)
 
+// setInterval(rePaint, 1000/60)
 
-function floorCollision(obj) {
-    if (obj.y < floor.y) {
-        obj.y = 401
-        // gravity = 2.5
-    // } else if (obj.y = floor.y){
-    //     gravity = 0;
-    }
-}
 
+
+    setInterval(rePaint, 1000/60)
