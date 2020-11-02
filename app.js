@@ -22,6 +22,7 @@ class Humanoid {
         this.speedX = 2
         this.alive = true
         this.win = false
+        this.level = 1
     }
 
     render() {
@@ -84,19 +85,20 @@ function xVelocity(obj) {
 function flagCollision(obj) {
     if (obj.x === flag.x) {
         console.log("win")
+        obj.level += 1
         obj.win = true
         console.log(obj)
     }
 }
 function levelComplete(obj) {
     if (obj.win === true) {
-        hero.x = 50;
-        hero.y = 330;
+        hero = new Humanoid(50, 330, "red", 40, 80)
         obj.win === false
-        // This reset the position but makes the hero not controlled
+        // This needs to increment the level by 1
     }
     return true
 }
+
 document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
         hero.y -= 250
@@ -108,8 +110,8 @@ document.addEventListener('keydown', function(evt) {
 })
 
 const floor = new Obstacle(0, 400, "green", 1600, 100)
-const hero = new Humanoid(50, 330, "red", 40, 80)
-const enemy = new Humanoid(800, 350, "blue", 40, 50)
+let hero = new Humanoid(50, 330, "red", 40, 80)
+let enemy = new Humanoid(800, 350, "blue", 40, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
 
 
