@@ -22,7 +22,7 @@ class Humanoid {
         this.speedX = 2
         this.alive = true
         this.win = false
-        this.level = 1
+        this.level = 0
     }
 
     render() {
@@ -64,9 +64,11 @@ function rePaint(){
     flagCollision(hero)
     xVelocity(hero)
     levelComplete(hero)
-    if (levelComplete === true) {
-        const enemy2 = new Humanoid(500, 350, "blue", 40, 50)
-    }
+    if (levelComplete(hero) === true) {
+        hero.level = hero.level + 1
+        const enemy2 = new Humanoid(500, 350, "blue", 40, 50)}
+        }
+
     // bullet.render()
     // document.addEventListener('keypress', function(evt) {
     //     if (evt.key === 'f') {
@@ -75,7 +77,6 @@ function rePaint(){
     //         console.log("pew")
     //     }
     // })
-}
 
 function xVelocity(obj) {
     if (obj.y > 330) {
@@ -85,7 +86,6 @@ function xVelocity(obj) {
 function flagCollision(obj) {
     if (obj.x === flag.x) {
         console.log("win")
-        obj.level += 1
         obj.win = true
         console.log(obj)
     }

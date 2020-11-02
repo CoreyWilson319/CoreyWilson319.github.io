@@ -5,6 +5,7 @@ body {
     display: grid;
     grid-template-areas: "top" "top" "top",
                         "description" "description" "description",
+                        "level",
                         "canvas" "canvas" "canvas",
                         "play",
                         "bottom" "footer" "bottom",
@@ -38,5 +39,9 @@ body {
 #footer {
     grid-area: "footer";
     color: red;
+    text-align: center;
+}
+#level {
+    grid-area: "level";
     text-align: center;
 }
