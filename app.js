@@ -57,7 +57,7 @@ document.addEventListener('keydown', function(evt) {
 })
 
 function rePaint(){
-    let gravity = .5;
+    let gravity = 2.5;
     // clear off the entire canva
     ctx.clearRect(0,0, gameArea.width, gameArea.height)
     // hero.y += gravity;
@@ -80,11 +80,11 @@ const enemy = new Humanoid(800, 400, "blue", 40, 80)
 
 
 function floorCollision(obj) {
-    if (obj.y > floor.y) {
+    if (obj.y < floor.y) {
         obj.y = 401
-        gravity = 2.5
-    } else if (obj.y = floor.y){
-        grivity = 0;
+        // gravity = 2.5
+    // } else if (obj.y = floor.y){
+    //     gravity = 0;
     }
 }
 
