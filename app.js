@@ -18,8 +18,10 @@ class Humanoid {
         this.width = width
         this.height = height
         this.gravity = 2.5
-        // this.gravitySpeed = 0
+        this.gravitySpeed = 0
+        this.speedX = 2
         this.alive = true
+        this.win = false
     }
 
     render() {
@@ -43,11 +45,61 @@ class Obstacle {
     }
 }
 
+function floorCollision(obj) {
+    if (obj.y > 330) {
+        obj.y = 330;
+        obj.gravity = 0;
+    } else {
+        obj.gravity = 2.5;}      
+    } 
+function rePaint(){
+    ctx.clearRect(0,0, gameArea.width, gameArea.height)
+    hero.render()
+    floor.render()
+    enemy.render()
+    flag.render()
+    hero.y += hero.gravity
+    floorCollision(hero)
+    flagCollision(hero)
+    xVelocity(hero)
+    levelComplete(hero)
+    if (levelComplete === true) {
+        const enemy2 = new Humanoid(500, 350, "blue", 40, 50)
+    }
+    // bullet.render()
+    // document.addEventListener('keypress', function(evt) {
+    //     if (evt.key === 'f') {
+    //         const bullet = new projectile(hero.x, hero.y, "orange", 40, 50)
+    //         bullet.render()
+    //         console.log("pew")
+    //     }
+    // })
+}
 
-
+function xVelocity(obj) {
+    if (obj.y > 330) {
+        obj.x += obj.speedX
+    }
+}
+function flagCollision(obj) {
+    if (obj.x === flag.x) {
+        console.log("win")
+        obj.win = true
+        console.log(obj)
+    }
+}
+function levelComplete(obj) {
+    if (obj.win === true) {
+        hero.x = 50;
+        hero.y = 330;
+        obj.win === false
+        // This reset the position but makes the hero not controlled
+    }
+    return true
+}
 document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
-        hero.y -= 200
+        hero.y -= 250
     } else if (evt.key === 'a') {
         hero.x -= 10
     } else if (evt.key === 'd') {
@@ -55,53 +107,21 @@ document.addEventListener('keydown', function(evt) {
     }
 })
 
-function floorCollision(obj) {
-    console.log('floor')
-    console.log(obj.y)
-    console.log(floor.y)
-    if (obj.y > 330) {
-        obj.y = 330;
-        obj.gravity = 0;
-    } else {
-        obj.gravity = 2.5;
-    }
-        // console.log('floor')
-        
-    } 
-    // if (obj.y > 400) {
-    //     hero.gravity = 2.5
-    //     obj.y += hero.gravity
-    // }
-        // gravity = 2.5
-    // } else if (obj.y = floor.y){
-    //     gravity = 0;
-    
-function rePaint(){
-    // let gravity = 2.5;
-    // clear off the entire canvas
-    ctx.clearRect(0,0, gameArea.width, gameArea.height)
-    // hero.y += gravity;
-    // render the hero and the enemy
-    // hero.y = 401
-    hero.render()
-    floor.render()
-    enemy.render()
-    // floorCollision(hero)
-    hero.y += hero.gravity
-    floorCollision(hero)
-    // if (enemy.alive)
-    // }
-    // collision()
-}
-
-
-
 const floor = new Obstacle(0, 400, "green", 1600, 100)
-const hero = new Humanoid(50, 300, "red", 40, 80)
-const enemy = new Humanoid(800, 400, "blue", 40, 80)
-
-// setInterval(rePaint, 1000/60)
-
+const hero = new Humanoid(50, 330, "red", 40, 80)
+const enemy = new Humanoid(800, 350, "blue", 40, 50)
+const flag = new Obstacle(1400, 0, "gold", 10, 500)
 
 
-    setInterval(rePaint, 1000/60)
+hero.render()
+floor.render()
+enemy.render()
+flag.render()
+// rePaint()
+// const bullet = new projectile(hero.x, 50, "orange", 40, 50)
+
+setInterval(rePaint, 1000/60)
+
+
+// Make it so that each level adds an enemy game ends after 5 levels completed
+// Maybe get a gun after beating a level
