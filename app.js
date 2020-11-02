@@ -10,7 +10,7 @@ const ctx = gameArea.getContext('2d')
 ctx.fillStyle = 'white';
 ctx.strokeStyle = 'red';
 ctx.lineWidth = 5;
-class Thing {
+class Humanoid {
     constructor(x, y, color, width, height) {
         this.x = x
         this.y = y
@@ -28,6 +28,23 @@ class Thing {
     }
 }
 
+class Obstacle {
+    constructor(x, y, color, width, height) {
+        this.x = x
+        this.y = y
+        this.color = color
+        this.width = width
+        this.height = height
+        this.solid = true
+    }
+    render() {
+        ctx.fillStyle = this.color
+        ctx.fillRect(this.x, this.y, this.width, this.height, this.gravitySpeed += this.gravity)
+    }
+}
+
+const floor = new Obstacle(0, 480, "green", 1600, 25)
+
 
 document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
@@ -37,27 +54,31 @@ document.addEventListener('keydown', function(evt) {
     } else if (evt.key === 'd') {
         hero.x += 10
     }
-
-    // console.log(hero)
-    // movementDisplay.textContent = `X: ${hero.x}, Y: ${hero.y}`
 })
 
 let gravity = 2.5;
 function rePaint(){
-    // clera off the entire canvas
+    // clear off the entire canva
     ctx.clearRect(0,0, gameArea.width, gameArea.height)
     hero.y += gravity;
-    // render the hero and the ogre
+    // render the hero and the enemy
     hero.render()
     floor.render()
-    // if (ogre.alive)
-    // {ogre.render()
+    floorCollision(hero)
+    // if (enemy.alive)
+    // {enemy.render()
     // }
     // collision()
 }
 
 setInterval(rePaint, 1000/60)
 
-const hero = new Thing(50, 400, "orange", 40, 80)
-const floor = new Thing(0, 480, "green", 1600, 25)
+const hero = new Humanoid(50, 400, "orange", 40, 80)
+
+
+function floorCollision(obj) {
+    if (obj.y < floor.y) {
+        obj.y += floor.y
+    }
+}
 
