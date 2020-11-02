@@ -1,0 +1,36 @@
+body {
+    background-color: black;
+}
+#container {
+    display: grid;
+    grid-template-areas: "top" "top" "top",
+                        "description" "description" "description",
+                        "canvas" "canvas" "canvas",
+                        "bottom" "footer" "bottom",
+}
+
+#title {
+    grid-area: "top";
+    text-align: center;
+    color: red;
+}
+
+#description {
+    grid-area: "description";
+    color: red;
+    text-align: center;
+}
+#game-area {
+    display: grid;
+    grid-area: "canvas";
+    margin: auto;
+    width: 1500px;
+    height: 500px;
+    border: 1px solid red;
+}
+
+#footer {
+    grid-area: "footer";
+    color: red;
+    text-align: center;
+}
