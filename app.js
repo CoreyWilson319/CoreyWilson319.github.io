@@ -81,11 +81,10 @@ const enemy = new Humanoid(800, 400, "blue", 40, 80)
 
 function floorCollision(obj) {
     if (obj.y > floor.y) {
-        obj.y = 400
-        gravity = 0}
-        // obj.y -= floor.height + floor.y}
-    // } else {
-    //     obj.y = floor.height
-    // }
+        obj.y = 401
+        gravity = 2.5
+    } else if (obj.y = floor.y){
+        grivity = 0;
+    }
 }
 
