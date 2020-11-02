@@ -6,6 +6,7 @@ body {
     grid-template-areas: "top" "top" "top",
                         "description" "description" "description",
                         "canvas" "canvas" "canvas",
+                        "play",
                         "bottom" "footer" "bottom",
 }
 
@@ -29,6 +30,11 @@ body {
     border: 1px solid red;
 }
 
+#play {
+    grid-area: "play";
+    color: red;
+    text-align: center;
+}
 #footer {
     grid-area: "footer";
     color: red;
