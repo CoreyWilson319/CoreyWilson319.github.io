@@ -48,7 +48,7 @@ const floor = new Obstacle(0, 480, "green", 1600, 25)
 
 document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
-        hero.y -= 10
+        hero.y -= 200
     } else if (evt.key === 'a') {
         hero.x -= 10
     } else if (evt.key === 'd') {
@@ -56,15 +56,17 @@ document.addEventListener('keydown', function(evt) {
     }
 })
 
-let gravity = 2.5;
 function rePaint(){
+    let gravity = .5;
     // clear off the entire canva
     ctx.clearRect(0,0, gameArea.width, gameArea.height)
-    hero.y += gravity;
+    // hero.y += gravity;
     // render the hero and the enemy
     hero.render()
     floor.render()
+    enemy.render()
     floorCollision(hero)
+    hero.y += gravity
     // if (enemy.alive)
     // {enemy.render()
     // }
@@ -73,12 +75,17 @@ function rePaint(){
 
 setInterval(rePaint, 1000/60)
 
-const hero = new Humanoid(50, 400, "orange", 40, 80)
+const hero = new Humanoid(50, 400, "red", 40, 80)
+const enemy = new Humanoid(800, 400, "blue", 40, 80)
 
 
 function floorCollision(obj) {
-    if (obj.y < floor.y) {
-        obj.y += floor.y
-    }
+    if (obj.y > floor.y) {
+        obj.y = 400
+        gravity = 0}
+        // obj.y -= floor.height + floor.y}
+    // } else {
+    //     obj.y = floor.height
+    // }
 }
 
