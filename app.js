@@ -125,7 +125,7 @@ let enemy2 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy3 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy4 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
-let bullet = new Obstacle(hero.x, 360, "orange", 20, 3)
+let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3)
 
 
 hero.render()
@@ -135,13 +135,19 @@ flag.render()
 
 setInterval(rePaint, 1000/60)
 
+document.addEventListener('keyup', function(evt) {
+    if (evt.key === 'f') {
+        let bullet = new Obstacle(hero.x, (hero.y+30), "orange", 20, 3)
+        bullet.render()
+    }
+})
 
 // Make it so that each level adds an enemy game ends after 5 levels completed
 // Maybe get a gun after beating a level
 
 
 //NOTES
-
+// let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3) GOOD BULLET HEIGHT
 // Set F to a function that make a projectile shoot from the hero's position
 // Add something to make the bullet travel
 
