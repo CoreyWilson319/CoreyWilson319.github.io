@@ -41,6 +41,7 @@ class Obstacle {
         this.height = height
         this.solid = true
         this.speedX = 2
+        this.alive = true
     }
     render() {
         ctx.fillStyle = this.color
@@ -63,7 +64,7 @@ function rePaint(){
     ctx.fillText(`Level: ${level}`, 800, 50)
     hero.render()
     floor.render()
-    enemy.render()
+    // enemy.render()
     flag.render()
     hero.y += hero.gravity
     bullet.x += bullet.speedX
@@ -71,7 +72,13 @@ function rePaint(){
     flagCollision(hero)
     xVelocity(hero)
     renderEnemy()
-    bullet.render()
+    enemyHit(enemy1)
+    enemyHit(enemy2)
+    enemyHit(enemy3)
+    // enemyHit(enemy4)
+    // enemyHit(enemy5)
+    bulletRender()
+
     
 }
 function xVelocity(obj) {
@@ -97,22 +104,42 @@ function flagCollision(obj) {
             }
         } 
     }}
-
+    // if (enemy.alive === true){
+        // enemy.render()
+    // }
 function renderEnemy(){
     if (level === 1) {
+        if (enemy1.alive === true){
         enemy1.render()
-    }
+    }}
     if (level === 2) {
-        enemy1.render()
+        if (enemy1.alive === true){
+        enemy1.render()}
+        if (enemy2.alive === true){
         enemy2.render()
-    }
+    }}
     if (level === 3) {
-        enemy1.render()
-        enemy2.render()
-        enemy3.render()
+        if (enemy1.alive === true){
+            enemy1.render()}
+            if (enemy2.alive === true){
+            enemy2.render()}
+            if (enemy3.alive === true){
+            enemy3.render()
+            }
+    }
+    if (level === 4) {
+        if (enemy1.alive === true){
+            enemy1.render()}
+            if (enemy2.alive === true){
+            enemy2.render()}
+            if (enemy3.alive === true){
+            enemy3.render()
+            }
+            if (enemy4.alive === true){
+            enemy4.render()
+            }
     }
 }
-
 document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
         hero.y -= 250
@@ -161,9 +188,24 @@ document.addEventListener('keyup', function(evt) {
 
 
 //NOTES
-// let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3) GOOD BULLET HEIGHT
-// Set F to a function that make a projectile shoot from the hero's position
-// Add something to make the bullet travel
 
-// Add collision to those bullets to kill enememies
+// Add collision to those bullets to kill enememies bullet should die after hitting an enemy too
+function enemyHit(enemynum){
+if (bullet.x < enemynum.x + enemynum.width &&
+    bullet.x + bullet.width > enemynum.x &&
+    bullet.y < enemynum.y + enemynum.height &&
+    bullet.y + bullet.height > enemynum.y) {
+        console.log('hi')
+     bullet.alive = false
+     enemynum.alive = false
+    }
+}
+
+function bulletRender(){
+    if (bullet.alive === true) {
+        bullet.render()
+    }
+}
+// Add collision to enemies so that when you walk into them you die
+// Maybe use an if loop in the repaint function if enemyi.alive === true then render() else don't render anymore
 
