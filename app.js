@@ -64,22 +64,8 @@ function rePaint(){
     floorCollision(hero)
     flagCollision(hero)
     xVelocity(hero)
-    // levelComplete(hero)
-    // levelIncrease(hero)
-    // if (levelComplete(hero) === true) {
-    //     hero.level = hero.level + (hero.level / 250)
-    //     const enemy2 = new Humanoid(500, 350, "blue", 40, 50)}
-    //     }
-
-    // bullet.render()
-    // document.addEventListener('keypress', function(evt) {
-    //     if (evt.key === 'f') {
-    //         const bullet = new projectile(hero.x, hero.y, "orange", 40, 50)
-    //         bullet.render()
-    //         console.log("pew")
-    //     }
-    // })
-
+    renderEnemy()
+    
 function xVelocity(obj) {
     if (obj.y > 330) {
         obj.x += obj.speedX
@@ -110,6 +96,21 @@ function flagCollision(obj) {
 // }
 // }
 
+
+function renderEnemy(){
+    if (level === 1) {
+        enemy1.render()
+    }
+    if (level === 2) {
+        enemy1.render()
+        enemy2.render()
+    }
+    if (level === 3) {
+        enemy1.render()
+        enemy2.render()
+        enemy3.render()
+    }
+}
 function levelIncrease() {
     if (levelComplete === true) {
        return level = level + 1;
@@ -126,10 +127,16 @@ document.addEventListener('keydown', function(evt) {
         hero.x += 10
     }
 })
-
+function randomNumber(min, max) {
+    return Math.random() * (max - min) + min
+}
 const floor = new Obstacle(0, 400, "green", 1600, 100)
 let hero = new Humanoid(50, 330, "red", 40, 80)
-let enemy = new Humanoid(800, 350, "blue", 40, 50)
+let enemy = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy1 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy2 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy3 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy4 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
 
 
