@@ -4,6 +4,7 @@ const height = computedStyle.height
 const width = computedStyle.width
 gameArea.height = height.replace('px', '')
 gameArea.width = width.replace('px', '')
+let level = 0
 
 
 const ctx = gameArea.getContext('2d')
@@ -22,7 +23,7 @@ class Humanoid {
         this.speedX = 2
         this.alive = true
         this.win = false
-        this.level = 0
+        // this.level = 0
     }
 
     render() {
@@ -63,11 +64,12 @@ function rePaint(){
     floorCollision(hero)
     flagCollision(hero)
     xVelocity(hero)
-    levelComplete(hero)
-    if (levelComplete(hero) === true) {
-        hero.level = hero.level + 1
-        const enemy2 = new Humanoid(500, 350, "blue", 40, 50)}
-        }
+    // levelComplete(hero)
+    // levelIncrease(hero)
+    // if (levelComplete(hero) === true) {
+    //     hero.level = hero.level + (hero.level / 250)
+    //     const enemy2 = new Humanoid(500, 350, "blue", 40, 50)}
+    //     }
 
     // bullet.render()
     // document.addEventListener('keypress', function(evt) {
@@ -84,21 +86,37 @@ function xVelocity(obj) {
     }
 }
 function flagCollision(obj) {
-    if (obj.x === flag.x) {
+    if (hero.x < flag.x + flag.width &&
+        hero.x + hero.width > flag.x && 
+        hero.y < flag.y + flag.height && 
+        hero.y + hero.y > flag.y) {
+    // if (obj.x === flag.x) {
         console.log("win")
         obj.win = true
-        console.log(obj)
-    }
-}
-function levelComplete(obj) {
-    if (obj.win === true) {
-        hero = new Humanoid(50, 330, "red", 40, 80)
-        obj.win === false
-        // This needs to increment the level by 1
-    }
-    return true
-}
+        if (obj.win === true) {
+            hero = new Humanoid(50, 330, "red", 40, 80)
+            level = level + 1;
+            console.log(level)
+        } 
+    }}
+// function levelComplete(obj) {
+//     if (obj.win === true) {
+//         return true
+//     //     hero = new Humanoid(50, 330, "red", 40, 80)
+//     //     obj.win === false
+//         // This needs to increment the level by 1
+//     } else {
+//         return false
+// }
+// }
 
+function levelIncrease() {
+    if (levelComplete === true) {
+       return level = level + 1;
+    } else {
+        return level
+    }
+}}
 document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
         hero.y -= 250
