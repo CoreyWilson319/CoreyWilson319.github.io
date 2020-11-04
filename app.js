@@ -40,6 +40,7 @@ class Obstacle {
         this.width = width
         this.height = height
         this.solid = true
+        this.speedX = 2
     }
     render() {
         ctx.fillStyle = this.color
@@ -61,11 +62,13 @@ function rePaint(){
     enemy.render()
     flag.render()
     hero.y += hero.gravity
+    bullet.x += bullet.speedX
     floorCollision(hero)
     flagCollision(hero)
     xVelocity(hero)
     renderEnemy()
-
+    bullet.render()
+}
 function xVelocity(obj) {
     if (obj.y > 330) {
         obj.x += obj.speedX
@@ -86,7 +89,6 @@ function flagCollision(obj) {
         } 
     }}
 
-
 function renderEnemy(){
     if (level === 1) {
         enemy1.render()
@@ -101,13 +103,7 @@ function renderEnemy(){
         enemy3.render()
     }
 }
-function levelIncrease() {
-    if (levelComplete === true) {
-       return level = level + 1;
-    } else {
-        return level
-    }
-}}
+
 document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
         hero.y -= 250
@@ -117,6 +113,7 @@ document.addEventListener('keydown', function(evt) {
         hero.x += 10
     }
 })
+
 function randomNumber(min, max) {
     return Math.random() * (max - min) + min
 }
@@ -128,6 +125,7 @@ let enemy2 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy3 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy4 = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
+let bullet = new Obstacle(hero.x, 360, "orange", 20, 3)
 
 
 hero.render()
@@ -140,3 +138,11 @@ setInterval(rePaint, 1000/60)
 
 // Make it so that each level adds an enemy game ends after 5 levels completed
 // Maybe get a gun after beating a level
+
+
+//NOTES
+
+// Set F to a function that make a projectile shoot from the hero's position
+// Add something to make the bullet travel
+
+// Add collision to those bullets to kill enememies
