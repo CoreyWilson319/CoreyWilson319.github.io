@@ -85,19 +85,14 @@ function flagCollision(obj) {
         hero.y < flag.y + flag.height && 
         hero.y + hero.y > flag.y) {
     // if (obj.x === flag.x) {
-        console.log("win")
         let gameWin = true
         if (gameWin === true) {
             hero = new Humanoid(50, 330, "red", 40, 80)
             level = level + 1;
-            console.log(level)
             if (gameWin === true && level === 5) {
-                console.log("clear")
                 ctx.font = "30px Arial";
                 ctx.textAlign = "center";
                 ctx.fillText("YOU WIN!", 800, 100)
-                // document.getElementById("game-area").innerText = "You Win!"
-                // ctx.clearRect(0, 0, ctx.width/2, ctx.height)/2;
                 clearInterval(running)
             }
         } 
@@ -156,7 +151,7 @@ document.getElementById("reset").addEventListener('click', function(hero, enemy)
 
 document.addEventListener('keyup', function(evt) {
     if (evt.key === 'f') {
-        let bullet = new Obstacle(hero.x, (hero.y+30), "orange", 20, 3)
+        bullet = new Obstacle(hero.x, (hero.y+30), "orange", 20, 3)
         bullet.render()
     }
 })
