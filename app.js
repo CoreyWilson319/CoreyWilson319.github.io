@@ -65,7 +65,7 @@ function rePaint(){
     flagCollision(hero)
     xVelocity(hero)
     renderEnemy()
-    
+
 function xVelocity(obj) {
     if (obj.y > 330) {
         obj.x += obj.speedX
@@ -85,16 +85,6 @@ function flagCollision(obj) {
             console.log(level)
         } 
     }}
-// function levelComplete(obj) {
-//     if (obj.win === true) {
-//         return true
-//     //     hero = new Humanoid(50, 330, "red", 40, 80)
-//     //     obj.win === false
-//         // This needs to increment the level by 1
-//     } else {
-//         return false
-// }
-// }
 
 
 function renderEnemy(){
@@ -144,8 +134,6 @@ hero.render()
 floor.render()
 enemy.render()
 flag.render()
-// rePaint()
-// const bullet = new projectile(hero.x, 50, "orange", 40, 50)
 
 setInterval(rePaint, 1000/60)
 
