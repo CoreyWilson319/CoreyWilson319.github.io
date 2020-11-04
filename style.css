@@ -31,7 +31,7 @@ body {
     border: 1px solid red;
 }
 
-#play {
+#reset {
     grid-area: "play";
     color: red;
     text-align: center;

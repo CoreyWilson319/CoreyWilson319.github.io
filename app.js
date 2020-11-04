@@ -4,7 +4,7 @@ const height = computedStyle.height
 const width = computedStyle.width
 gameArea.height = height.replace('px', '')
 gameArea.width = width.replace('px', '')
-let level = 0
+let level = 1
 
 
 const ctx = gameArea.getContext('2d')
@@ -55,8 +55,12 @@ function floorCollision(obj) {
     } else {
         obj.gravity = 2.5;}      
     } 
+
 function rePaint(){
     ctx.clearRect(0,0, gameArea.width, gameArea.height)
+    ctx.font = "30px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText(`Level: ${level}`, 800, 50)
     hero.render()
     floor.render()
     enemy.render()
@@ -68,6 +72,7 @@ function rePaint(){
     xVelocity(hero)
     renderEnemy()
     bullet.render()
+    
 }
 function xVelocity(obj) {
     if (obj.y > 330) {
@@ -81,11 +86,20 @@ function flagCollision(obj) {
         hero.y + hero.y > flag.y) {
     // if (obj.x === flag.x) {
         console.log("win")
-        obj.win = true
-        if (obj.win === true) {
+        let gameWin = true
+        if (gameWin === true) {
             hero = new Humanoid(50, 330, "red", 40, 80)
             level = level + 1;
             console.log(level)
+            if (gameWin === true && level === 5) {
+                console.log("clear")
+                ctx.font = "30px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText("YOU WIN!", 800, 100)
+                // document.getElementById("game-area").innerText = "You Win!"
+                // ctx.clearRect(0, 0, ctx.width/2, ctx.height)/2;
+                clearInterval(running)
+            }
         } 
     }}
 
@@ -128,12 +142,17 @@ const flag = new Obstacle(1400, 0, "gold", 10, 500)
 let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3)
 
 
-hero.render()
-floor.render()
-enemy.render()
-flag.render()
 
-setInterval(rePaint, 1000/60)
+
+let running = setInterval(rePaint, 1000/60)
+
+document.getElementById("reset").addEventListener('click', function(hero, enemy) {
+    clearInterval(running)
+    level = 1
+    hero = new Humanoid(50, 330, "red", 40, 80)
+    enemy = new Humanoid(randomNumber(60, 1400), 350, "blue", 40, 50)
+    running = setInterval(rePaint, 1000/60)
+})
 
 document.addEventListener('keyup', function(evt) {
     if (evt.key === 'f') {
@@ -152,3 +171,4 @@ document.addEventListener('keyup', function(evt) {
 // Add something to make the bullet travel
 
 // Add collision to those bullets to kill enememies
+
