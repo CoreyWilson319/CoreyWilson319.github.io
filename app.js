@@ -78,24 +78,24 @@ function rePaint(){
     enemyHit(enemy2)
     enemyHit(enemy3)
     enemyHit(enemy4)
-    enemyHit(enemy5)
-    enemyHit(enemy6)
-    enemyHit(enemy7)
-    enemyHit(enemy8)
-    enemyHit(enemy9)
+    // enemyHit(enemy5)
+    // enemyHit(enemy6)
+    // enemyHit(enemy7)
+    // enemyHit(enemy8)
+    // enemyHit(enemy9)
     playerHit(enemy)
     playerHit(enemy1)
     playerHit(enemy2)
     playerHit(enemy3)
     playerHit(enemy4)
-    playerHit(enemy5)
-    playerHit(enemy6)
-    playerHit(enemy7)
-    playerHit(enemy8)
-    playerHit(enemy9)
+    // playerHit(enemy5)
+    // playerHit(enemy6)
+    // playerHit(enemy7)
+    // playerHit(enemy8)
+    // playerHit(enemy9)
     bulletRender()
+    removeBullet()
     lose()
-    // kill()
 
     
 }
@@ -112,7 +112,7 @@ function flagCollision() {
         let gameWin = true
         if (gameWin === true) {
             activateEnemies()
-            hero = new Humanoid('hero', 50, 330, "red", 40, 80)
+            hero = new Humanoid('hero', 50, 330, "red", 40, 80) // can probably just change x position
             level = level + 1;
             if (gameWin === true && level === 5) {
                 ctx.font = "30px Arial";
@@ -125,35 +125,27 @@ function flagCollision() {
 
 function renderEnemy(){
     if (level === 1) {
-        if (enemy.alive === true){
         enemy.render()
-    }}
+    }
     if (level === 2) {
-        if (enemy1.alive === true){
-        enemy1.render()}
-        if (enemy2.alive === true){
+        enemy.render()
+        enemy1.render()
         enemy2.render()
-    }}
+    }
     if (level === 3) {
-        if (enemy3.alive === true){
-            enemy3.render()}
-            if (enemy4.alive === true){
-            enemy4.render()}
-            if (enemy5.alive === true){
-            enemy5.render()
-            }
+        enemy.render()
+        enemy1.render()
+        enemy2.render()
+        enemy3.render()
+        enemy4.render()
     }
     if (level === 4) {
-        if (enemy6.alive === true){
-            enemy6.render()}
-            if (enemy7.alive === true){
-            enemy7.render()}
-            if (enemy8.alive === true){
-            enemy8.render()
-            }
-            if (enemy9.alive === true){
-            enemy9.render()
-            }
+        enemy.render()
+        enemy1.render()
+        enemy2.render()
+        enemy3.render()
+        enemy4.render()
+        // enemy5.render()
     }
 }
 document.addEventListener('keydown', function(evt) {
@@ -176,11 +168,11 @@ let enemy1 = new Humanoid('enemy1', randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy5 = new Humanoid('enemy5', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy6 = new Humanoid('enemy6', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy7 = new Humanoid('enemy7', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy8 = new Humanoid('enemy8', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy9 = new Humanoid('enemy9', randomNumber(60, 1400), 350, "blue", 40, 50)
+// let enemy5 = new Humanoid('enemy5', randomNumber(60, 1400), 350, "blue", 40, 50)
+// let enemy6 = new Humanoid('enemy6', randomNumber(60, 1400), 350, "blue", 40, 50)
+// let enemy7 = new Humanoid('enemy7', randomNumber(60, 1400), 350, "blue", 40, 50)
+// let enemy8 = new Humanoid('enemy8', randomNumber(60, 1400), 350, "blue", 40, 50)
+// let enemy9 = new Humanoid('enemy9', randomNumber(60, 1400), 350, "blue", 40, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
 let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3)
 enemy.alive = true
@@ -188,11 +180,11 @@ enemy1.alive = false
 enemy2.alive = false
 enemy3.alive = false
 enemy4.alive = false
-enemy5.alive = false
-enemy6.alive = false
-enemy7.alive = false
-enemy8.alive = false
-enemy9.alive = false
+// enemy5.alive = false
+// enemy6.alive = false
+// enemy7.alive = false
+// enemy8.alive = false
+// enemy9.alive = false
 
 
 function activateEnemies(){ // HOW CAN I MAKE THIS RUN WHEN LEVEL CHANGES
@@ -200,19 +192,22 @@ if (level === 1) {
     enemy.alive = true
 }
 if (level === 2) {
+    enemy.alive = true
     enemy1.alive = true
     enemy2.alive = true
 }
 if (level === 3) {
+    enemy.alive = true
+    enemy1.alive = true
+    enemy2.alive = true
     enemy3.alive = true
-    enemy4.alive = true
-    enemy5.alive = true
 }
 if (level === 4) {
-    enemy6.alive = true
-    enemy7.alive = true
-    enemy8.alive = true
-    enemy9.alive = true
+    enemy.alive = true
+    enemy1.alive = true
+    enemy2.alive = true
+    enemy3.alive = true
+    enemy4.alive = true
 }
 }
 let running = setInterval(rePaint, 1000/60)
@@ -232,13 +227,7 @@ document.addEventListener('keyup', function(evt) {
     }
 })
 
-// Make it so that each level adds an enemy game ends after 5 levels completed
-// Maybe get a gun after beating a level
 
-
-//NOTES
-
-// Add collision to those bullets to kill enememies bullet should die after hitting an enemy too
 function playerHit(enemynum){ // See if I can pass in a list of enemies as the parameter
     if (enemynum.alive === true){
     if (hero.x < enemynum.x + enemynum.width &&
@@ -251,7 +240,7 @@ function playerHit(enemynum){ // See if I can pass in a list of enemies as the p
         }
     }}
 
-function enemyHit(enemynum){
+function enemyHit(enemynum){ // See if I can pass in a list of enemies as the parameter
 if (bullet.x < enemynum.x + enemynum.width &&
     bullet.x + bullet.width > enemynum.x &&
     bullet.y < enemynum.y + enemynum.height &&
@@ -277,10 +266,16 @@ function lose() {
         clearInterval(running)
     }
 }
-// function kill(obj) {
-//     if (obj.alive === false) {
-//         delete obj
-//     }
-// }
+function removeBullet() {
+    if (bullet.alive === false) {
+        delete bullet
+    }
+}
+
+// Make it so that each level adds an enemy game ends after 5 levels completed
+// Maybe get a gun after beating a level
+
+
+//NOTES
+
 // Add collision to enemies so that when you walk into them you die
-// Maybe use an if loop in the repaint function if enemyi.alive === true then render() else don't render anymore
