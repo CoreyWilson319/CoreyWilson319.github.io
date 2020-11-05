@@ -73,6 +73,9 @@ function rePaint(){
     flagCollision(hero)
     xVelocity(hero)
     renderEnemy()
+    // for (let i = 0; i <= enemies.length; i++) {
+    //     enemyHit(enemies[i])
+    // }
     enemyHit(enemy)
     enemyHit(enemy1)
     enemyHit(enemy2)
@@ -111,9 +114,9 @@ function flagCollision() {
         hero.y + hero.y > flag.y) {
         let gameWin = true
         if (gameWin === true) {
-            activateEnemies()
             hero = new Humanoid('hero', 50, 330, "red", 40, 80) // can probably just change x position
             level = level + 1;
+            activateEnemies()
             if (gameWin === true && level === 5) {
                 ctx.font = "30px Arial";
                 ctx.textAlign = "center";
@@ -185,7 +188,7 @@ enemy4.alive = false
 // enemy7.alive = false
 // enemy8.alive = false
 // enemy9.alive = false
-
+const enemies = [enemy, enemy1, enemy2, enemy3, enemy4]
 
 function activateEnemies(){ // HOW CAN I MAKE THIS RUN WHEN LEVEL CHANGES
 if (level === 1) {
@@ -235,7 +238,6 @@ function playerHit(enemynum){ // See if I can pass in a list of enemies as the p
         hero.y < enemynum.y + enemynum.height &&
         hero.y + hero.height > enemynum.y) {
          hero.alive = false
-         enemynum.alive = false
          console.log(`Player Hit by ${enemynum.name} Game Over`)
         }
     }}
