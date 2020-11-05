@@ -42,7 +42,7 @@ class Obstacle {
         this.height = height
         this.solid = true
         this.speedX = 2
-        this.alive = true
+        this.alive = false
     }
     render() {
         ctx.fillStyle = this.color
@@ -97,7 +97,7 @@ function rePaint(){
     // playerHit(enemy8)
     // playerHit(enemy9)
     bulletRender()
-    removeBullet()
+    // removeBullet()
     lose()
 
     
@@ -226,6 +226,7 @@ document.getElementById("reset").addEventListener('click', function(hero, enemy)
 document.addEventListener('keyup', function(evt) {
     if (evt.key === 'f') {
         bullet = new Obstacle(hero.x, (hero.y+30), "orange", 20, 3)
+        bullet.alive = true
         bullet.render()
     }
 })
@@ -247,9 +248,10 @@ if (bullet.x < enemynum.x + enemynum.width &&
     bullet.x + bullet.width > enemynum.x &&
     bullet.y < enemynum.y + enemynum.height &&
     bullet.y + bullet.height > enemynum.y &&
-    enemynum.alive === true ){
+    enemynum.alive === true && bullet.alive === true){
         console.log(`${enemynum.name} has been hit`)
      bullet.alive = false
+     
      enemynum.alive = false
     }
 }
@@ -266,11 +268,6 @@ function lose() {
         ctx.textAlign = "center";
         ctx.fillText("YOU LOSE!", 800, 100)
         clearInterval(running)
-    }
-}
-function removeBullet() {
-    if (bullet.alive === false) {
-        delete bullet
     }
 }
 
