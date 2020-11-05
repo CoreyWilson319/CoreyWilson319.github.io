@@ -81,24 +81,14 @@ function rePaint(){
     enemyHit(enemy2)
     enemyHit(enemy3)
     enemyHit(enemy4)
-    // enemyHit(enemy5)
-    // enemyHit(enemy6)
-    // enemyHit(enemy7)
-    // enemyHit(enemy8)
-    // enemyHit(enemy9)
     playerHit(enemy)
     playerHit(enemy1)
     playerHit(enemy2)
     playerHit(enemy3)
     playerHit(enemy4)
-    // playerHit(enemy5)
-    // playerHit(enemy6)
-    // playerHit(enemy7)
-    // playerHit(enemy8)
-    // playerHit(enemy9)
     bulletRender()
-    // removeBullet()
     lose()
+    moveEnemy(enemy)
 
     
 }
@@ -271,10 +261,16 @@ function lose() {
     }
 }
 
-// Make it so that each level adds an enemy game ends after 5 levels completed
-// Maybe get a gun after beating a level
-
-
+function moveEnemy(enemynum) {
+    enemy.x -= (hero.x/20)
+    // enemy1.x -= (hero.x/20)
+    // enemy2.x -= (hero.x/20)
+    // enemy3.x -= (hero.x/20)
+    // enemy4.x -= (hero.x/20)
+}
 //NOTES
 
-// Add collision to enemies so that when you walk into them you die
+// Give enemies random patterns
+// give enemies and hero images
+// give flagpole an image
+// Sound?
