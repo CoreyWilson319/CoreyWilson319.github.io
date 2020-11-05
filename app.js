@@ -78,12 +78,21 @@ function rePaint(){
     enemyHit(enemy2)
     enemyHit(enemy3)
     enemyHit(enemy4)
+    enemyHit(enemy5)
+    enemyHit(enemy6)
+    enemyHit(enemy7)
+    enemyHit(enemy8)
+    enemyHit(enemy9)
     playerHit(enemy)
     playerHit(enemy1)
     playerHit(enemy2)
     playerHit(enemy3)
     playerHit(enemy4)
-    // enemyHit(enemy5)
+    playerHit(enemy5)
+    playerHit(enemy6)
+    playerHit(enemy7)
+    playerHit(enemy8)
+    playerHit(enemy9)
     bulletRender()
     lose()
     // kill()
@@ -102,6 +111,7 @@ function flagCollision() {
         hero.y + hero.y > flag.y) {
         let gameWin = true
         if (gameWin === true) {
+            activateEnemies()
             hero = new Humanoid('hero', 50, 330, "red", 40, 80)
             level = level + 1;
             if (gameWin === true && level === 5) {
@@ -125,24 +135,24 @@ function renderEnemy(){
         enemy2.render()
     }}
     if (level === 3) {
-        if (enemy1.alive === true){
-            enemy1.render()}
-            if (enemy2.alive === true){
-            enemy2.render()}
-            if (enemy3.alive === true){
-            enemy3.render()
+        if (enemy3.alive === true){
+            enemy3.render()}
+            if (enemy4.alive === true){
+            enemy4.render()}
+            if (enemy5.alive === true){
+            enemy5.render()
             }
     }
     if (level === 4) {
-        if (enemy1.alive === true){
-            enemy1.render()}
-            if (enemy2.alive === true){
-            enemy2.render()}
-            if (enemy3.alive === true){
-            enemy3.render()
+        if (enemy6.alive === true){
+            enemy6.render()}
+            if (enemy7.alive === true){
+            enemy7.render()}
+            if (enemy8.alive === true){
+            enemy8.render()
             }
-            if (enemy4.alive === true){
-            enemy4.render()
+            if (enemy9.alive === true){
+            enemy9.render()
             }
     }
 }
@@ -167,14 +177,23 @@ let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 350, "blue", 40, 50)
 let enemy5 = new Humanoid('enemy5', randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy6 = new Humanoid('enemy6', randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy7 = new Humanoid('enemy7', randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy8 = new Humanoid('enemy8', randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy9 = new Humanoid('enemy9', randomNumber(60, 1400), 350, "blue", 40, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
 let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3)
-enemy.alive = false
+enemy.alive = true
 enemy1.alive = false
 enemy2.alive = false
 enemy3.alive = false
 enemy4.alive = false
 enemy5.alive = false
+enemy6.alive = false
+enemy7.alive = false
+enemy8.alive = false
+enemy9.alive = false
+
 
 function activateEnemies(){ // HOW CAN I MAKE THIS RUN WHEN LEVEL CHANGES
 if (level === 1) {
@@ -188,6 +207,12 @@ if (level === 3) {
     enemy3.alive = true
     enemy4.alive = true
     enemy5.alive = true
+}
+if (level === 4) {
+    enemy6.alive = true
+    enemy7.alive = true
+    enemy8.alive = true
+    enemy9.alive = true
 }
 }
 let running = setInterval(rePaint, 1000/60)
