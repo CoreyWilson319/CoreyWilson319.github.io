@@ -73,12 +73,19 @@ function rePaint(){
     flagCollision(hero)
     xVelocity(hero)
     renderEnemy()
+    enemyHit(enemy)
     enemyHit(enemy1)
     enemyHit(enemy2)
     enemyHit(enemy3)
-    // enemyHit(enemy4)
+    enemyHit(enemy4)
+    playerHit(enemy)
+    playerHit(enemy1)
+    playerHit(enemy2)
+    playerHit(enemy3)
+    playerHit(enemy4)
     // enemyHit(enemy5)
     bulletRender()
+    lose()
     // kill()
 
     
@@ -167,7 +174,9 @@ enemy1.alive = false
 enemy2.alive = false
 enemy3.alive = false
 enemy4.alive = false
+enemy5.alive = false
 
+function activateEnemies(){ // HOW CAN I MAKE THIS RUN WHEN LEVEL CHANGES
 if (level === 1) {
     enemy.alive = true
 }
@@ -180,10 +189,7 @@ if (level === 3) {
     enemy4.alive = true
     enemy5.alive = true
 }
-
-
-
-
+}
 let running = setInterval(rePaint, 1000/60)
 
 document.getElementById("reset").addEventListener('click', function(hero, enemy) {
@@ -224,7 +230,8 @@ function enemyHit(enemynum){
 if (bullet.x < enemynum.x + enemynum.width &&
     bullet.x + bullet.width > enemynum.x &&
     bullet.y < enemynum.y + enemynum.height &&
-    bullet.y + bullet.height > enemynum.y) {
+    bullet.y + bullet.height > enemynum.y &&
+    enemynum.alive === true ){
         console.log(`${enemynum.name} has been hit`)
      bullet.alive = false
      enemynum.alive = false
