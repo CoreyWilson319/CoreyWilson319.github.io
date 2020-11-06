@@ -121,6 +121,7 @@ function rePaint(){
     bulletRender()
     lose()
     moveEnemy(enemy)
+    gameOn()
 
     
 }
@@ -338,7 +339,7 @@ document.getElementById("reset").addEventListener('click', function() {
 // } if {lose(running)}
 //     return running}
 
-gameOn()
+// gameOn()
 
 //NOTES
 
