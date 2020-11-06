@@ -51,3 +51,10 @@ body {
     grid-area: "level";
     text-align: center;
 }
+
+@media (max-width: 3100) {
+    #game-area {
+        width: 1000px;
+        height: 200px;
+    }
+}
