@@ -262,18 +262,6 @@ if (level === 4) {
 }
 
 
-document.getElementById("reset").addEventListener('click', function(hero) {
-    level = 1
-    // hero = new Humanoid('hero', 50, 330, "red", 40, 80)
-    hero.alive = true;
-    hero.x = 20;
-    hero.y = 300;
-    enemy = new Humanoid('enemy', randomNumber(500, 1400), 325, "blue", 40, 50)
-    gameLive = true
-    gameOn()
-    
-})
-
 document.addEventListener('keyup', function(evt) {
     if (evt.key === 'f') {
         bullet = new Obstacle(hero.x, (hero.y+30), "orange", 20, 3)
@@ -319,7 +307,7 @@ function lose(running) {
         ctx.font = "30px Arial";
         ctx.textAlign = "center";
         ctx.fillText("YOU LOSE!", 800, 100)
-        clearInterval(running)
+        // clearInterval(running)
     }
 }
 
@@ -327,8 +315,28 @@ let gameLive = true
 function gameOn(){
     if (gameLive === true){
 let running = setInterval(rePaint, 1000/60)
-} else {lose(running)}
-    return running}
+    } if (gameLive === false && hero.alive === false) {
+        ctx.font = "30px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("YOU LOSE!", 800, 100)
+        clearInterval(running)
+    }
+}
+
+document.getElementById("reset").addEventListener('click', function() {
+    level = 1
+    // hero = new Humanoid('hero', 50, 330, "red", 40, 80)
+    hero.alive = true;
+    gameLive = true;
+    hero.x = 20;
+    hero.y = 300;
+    enemy = new Humanoid('enemy', randomNumber(500, 1400), 325, "blue", 40, 50)
+    gameLive = true
+    gameOn()
+    
+})
+// } if {lose(running)}
+//     return running}
 
 gameOn()
 
