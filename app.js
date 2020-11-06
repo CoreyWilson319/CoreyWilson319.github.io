@@ -92,6 +92,15 @@ function rePaint(){
 
     
 }
+function moveEnemy(obj) {
+    if (obj.x > hero.x) {
+    obj.x =  obj.x - obj.speedX - 5
+    }
+    if (obj.x - 50 < hero.x) {
+    obj.x =  obj.x + obj.speedX // tweak this if it becomes too hard
+    }
+}
+
 function xVelocity(obj) {
     if (obj.y > 330) {
         obj.x += obj.speedX
@@ -118,27 +127,57 @@ function flagCollision() {
 
 function renderEnemy(){
     if (level === 1) {
+        if (enemy.alive === true){
         enemy.render()
+        }
     }
     if (level === 2) {
+        if (enemy.alive === true){
         enemy.render()
+    }
+    if (enemy1.alive === true){
         enemy1.render()
+    }
+    if (enemy2.alive === true){
         enemy2.render()
+    }
     }
     if (level === 3) {
-        enemy.render()
-        enemy1.render()
-        enemy2.render()
-        enemy3.render()
-        enemy4.render()
+        if (enemy.alive === true){
+            enemy.render()
+        }
+        if (enemy1.alive === true){
+            enemy1.render()
+        }
+        if (enemy2.alive === true){
+            enemy2.render()
+        }
+        if (enemy3.alive === true){
+            enemy4.render()
+        }
+        if (enemy4.alive === true){
+            enemy4.render()
+        }
     }
     if (level === 4) {
-        enemy.render()
-        enemy1.render()
-        enemy2.render()
-        enemy3.render()
-        enemy4.render()
-        // enemy5.render()
+        if (enemy.alive === true){
+            enemy.render()
+        }
+        if (enemy1.alive === true){
+            enemy1.render()
+        }
+        if (enemy2.alive === true){
+            enemy2.render()
+        }
+        if (enemy3.alive === true){
+            enemy4.render()
+        }
+        if (enemy4.alive === true){
+            enemy4.render()
+        }
+        if (enemy5.alive === true){
+            enemy5.render()
+        }
     }
 }
 document.addEventListener('keydown', function(evt) {
@@ -222,6 +261,7 @@ document.addEventListener('keyup', function(evt) {
 })
 
 
+
 function playerHit(enemynum){ // See if I can pass in a list of enemies as the parameter
     if (enemynum.alive === true){
     if (hero.x < enemynum.x + enemynum.width &&
@@ -261,16 +301,15 @@ function lose() {
     }
 }
 
-function moveEnemy(enemynum) {
-    enemy.x -= (hero.x/20)
-    // enemy1.x -= (hero.x/20)
-    // enemy2.x -= (hero.x/20)
-    // enemy3.x -= (hero.x/20)
-    // enemy4.x -= (hero.x/20)
-}
+
+
+
+// setInterval(moveEnemyUp(enemy), 2000)
+// setInterval(moveEnemyDown(enemy), 4000)
 //NOTES
 
 // Give enemies random patterns
 // give enemies and hero images
 // give flagpole an image
 // Sound?
+
