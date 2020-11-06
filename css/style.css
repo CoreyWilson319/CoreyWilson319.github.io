@@ -32,11 +32,17 @@ body {
     background-size: cover;
     grid-area: "canvas";
     margin: auto;
+        /* width: 1500px;
+    height: 500px; change back once media is set*/ 
     width: 1000;
     height: 250;
     border: 1px solid black;
 }
 
+/* @media resolution of deployment page so that it shows up there */
+    /* width: 1000;
+    height: 250;
+/*  */
 #reset {
     grid-area: "play";
     color: rgba(255, 255, 0, 0.616);
