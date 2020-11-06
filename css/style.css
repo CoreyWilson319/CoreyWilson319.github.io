@@ -32,8 +32,8 @@ body {
     background-size: cover;
     grid-area: "canvas";
     margin: auto;
-    width: 1500px;
-    height: 500px;
+    width: 1000;
+    height: 250;
     border: 1px solid black;
 }
 
