@@ -121,7 +121,7 @@ function rePaint(){
     bulletRender()
     lose()
     moveEnemy(enemy)
-    gameOn()
+    // gameOn()
 
     
 }
@@ -280,6 +280,7 @@ function playerHit(enemynum){ // See if I can pass in a list of enemies as the p
         hero.y < enemynum.y + enemynum.height &&
         hero.y + hero.height > enemynum.y) {
          hero.alive = false
+         clearInterval(running)
          console.log(`Player Hit by ${enemynum.name} Game Over`)
         }
     }}
@@ -311,7 +312,7 @@ function lose(running) {
         // clearInterval(running)
     }
 }
-
+let running = setInterval(rePaint, 1000/60)
 let gameLive = true
 function gameOn(){
     if (gameLive === true){
