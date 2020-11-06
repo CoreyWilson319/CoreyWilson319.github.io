@@ -6,6 +6,20 @@ gameArea.height = height.replace('px', '')
 gameArea.width = width.replace('px', '')
 let level = 1
 
+function heroImg(x, y){
+const imgPath = "images/hero.png"
+let imgObj = new Image();
+imgObj.src = imgPath
+imgObj.onload = function(){
+    ctx.drawImage(imgObj, x, y)
+}}
+function enemyImg(x, y){
+const imgPath = 'images/enemy.png'
+let imgObj = new Image();
+imgObj.src = imgPath
+imgObj.onload = function(){
+    ctx.drawImage(imgObj, x, y)
+}}
 
 const ctx = gameArea.getContext('2d')
 ctx.fillStyle = 'white';
@@ -28,8 +42,11 @@ class Humanoid {
     }
 
     render() {
-        ctx.fillStyle = this.color
-        ctx.fillRect(this.x, this.y, this.width, this.height, this.gravitySpeed += this.gravity)
+        if (this.name === 'hero'){
+            heroImg(this.x, this.y)
+        } else { enemyImg(this.x, this.y)}
+        // ctx.fillStyle = this.color
+        // ctx.fillRect(this.x, this.y, this.width, this.height)
     }
 }
 
@@ -155,9 +172,6 @@ function renderEnemy(){
         if (enemy3.alive === true){
             enemy4.render()
         }
-        if (enemy4.alive === true){
-            enemy4.render()
-        }
     }
     if (level === 4) {
         if (enemy.alive === true){
@@ -174,9 +188,6 @@ function renderEnemy(){
         }
         if (enemy4.alive === true){
             enemy4.render()
-        }
-        if (enemy5.alive === true){
-            enemy5.render()
         }
     }
 }
@@ -195,16 +206,11 @@ function randomNumber(min, max) {
 }
 const floor = new Obstacle(0, 400, "green", 1600, 100)
 let hero = new Humanoid('hero', 50, 280, "red", 40, 80)
-let enemy = new Humanoid('enemy', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy1 = new Humanoid('enemy1', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 350, "blue", 40, 50)
-let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 350, "blue", 40, 50)
-// let enemy5 = new Humanoid('enemy5', randomNumber(60, 1400), 350, "blue", 40, 50)
-// let enemy6 = new Humanoid('enemy6', randomNumber(60, 1400), 350, "blue", 40, 50)
-// let enemy7 = new Humanoid('enemy7', randomNumber(60, 1400), 350, "blue", 40, 50)
-// let enemy8 = new Humanoid('enemy8', randomNumber(60, 1400), 350, "blue", 40, 50)
-// let enemy9 = new Humanoid('enemy9', randomNumber(60, 1400), 350, "blue", 40, 50)
+let enemy = new Humanoid('enemy', randomNumber(60, 1400), 325, "blue", 40, 50)
+let enemy1 = new Humanoid('enemy1', randomNumber(60, 1400), 325, "blue", 40, 50)
+let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 325, "blue", 40, 50)
+let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 325, "blue", 40, 50)
+let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 325, "blue", 40, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
 let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3)
 enemy.alive = true
@@ -212,11 +218,6 @@ enemy1.alive = false
 enemy2.alive = false
 enemy3.alive = false
 enemy4.alive = false
-// enemy5.alive = false
-// enemy6.alive = false
-// enemy7.alive = false
-// enemy8.alive = false
-// enemy9.alive = false
 const enemies = [enemy, enemy1, enemy2, enemy3, enemy4]
 
 function activateEnemies(){ // HOW CAN I MAKE THIS RUN WHEN LEVEL CHANGES
@@ -233,6 +234,7 @@ if (level === 3) {
     enemy1.alive = true
     enemy2.alive = true
     enemy3.alive = true
+    enemy4.alive = true
 }
 if (level === 4) {
     enemy.alive = true
@@ -248,7 +250,7 @@ document.getElementById("reset").addEventListener('click', function(hero, enemy)
     clearInterval(running)
     level = 1
     hero = new Humanoid('hero', 50, 330, "red", 40, 80)
-    enemy = new Humanoid('enemy', randomNumber(60, 1400), 350, "blue", 40, 50)
+    enemy = new Humanoid('enemy', randomNumber(60, 1400), 325, "blue", 40, 50)
     running = setInterval(rePaint, 1000/60)
 })
 
