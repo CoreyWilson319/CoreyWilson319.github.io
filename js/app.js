@@ -121,7 +121,6 @@ function rePaint(){
     bulletRender()
     lose()
     moveEnemy(enemy)
-    // gameOn()
 
     
 }
@@ -309,7 +308,6 @@ function lose(running) {
         ctx.font = "30px Arial";
         ctx.textAlign = "center";
         ctx.fillText("YOU LOSE!", 800, 100)
-        // clearInterval(running)
     }
 }
 let running = setInterval(rePaint, 1000/60)
@@ -327,7 +325,6 @@ function gameOn(){
 
 document.getElementById("reset").addEventListener('click', function() {
     level = 1
-    // hero = new Humanoid('hero', 50, 330, "red", 40, 80)
     hero.alive = true;
     gameLive = true;
     hero.x = 20;
@@ -337,13 +334,8 @@ document.getElementById("reset").addEventListener('click', function() {
     gameOn()
     
 })
-// } if {lose(running)}
-//     return running}
-
-// gameOn()
 
 //NOTES
 
-// give flagpole an image
 // Sound?
 

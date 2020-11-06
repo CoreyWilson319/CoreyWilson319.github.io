@@ -21,6 +21,7 @@ body {
 
 #description {
     grid-area: "description";
+    font-family: 'Syne Mono', monospace;
     color: rgb(102, 216, 102);
     font-size: 30px;
     text-align: center;
