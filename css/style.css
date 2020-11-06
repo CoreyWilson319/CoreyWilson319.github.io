@@ -1,5 +1,6 @@
 body {
     background-color: black;
+    
 }
 #container {
     display: grid;
@@ -14,31 +15,36 @@ body {
 #title {
     grid-area: "top";
     text-align: center;
+    font-size: 80px;
     color: red;
 }
 
 #description {
     grid-area: "description";
-    color: red;
+    color: rgb(102, 216, 102);
+    font-size: 30px;
     text-align: center;
 }
 #game-area {
     display: grid;
+    background-color: white;
+    background-image: url("background.png");
+    background-size: cover;
     grid-area: "canvas";
     margin: auto;
     width: 1500px;
     height: 500px;
-    border: 1px solid red;
+    border: 1px solid black;
 }
 
 #reset {
     grid-area: "play";
-    color: red;
+    color: rgba(255, 255, 0, 0.616);
     text-align: center;
 }
 #footer {
     grid-area: "footer";
-    color: red;
+    color: white;
     text-align: center;
 }
 #level {

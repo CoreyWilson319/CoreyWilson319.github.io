@@ -4,10 +4,18 @@ const height = computedStyle.height
 const width = computedStyle.width
 gameArea.height = height.replace('px', '')
 gameArea.width = width.replace('px', '')
+
 let level = 1
 
 function heroImg(x, y){
 const imgPath = "images/hero.png"
+let imgObj = new Image();
+imgObj.src = imgPath
+imgObj.onload = function(){
+    ctx.drawImage(imgObj, x, y)
+}}
+function grassImg(x, y){
+const imgPath = "images/grass.png"
 let imgObj = new Image();
 imgObj.src = imgPath
 imgObj.onload = function(){
@@ -21,10 +29,12 @@ imgObj.onload = function(){
     ctx.drawImage(imgObj, x, y)
 }}
 
+
 const ctx = gameArea.getContext('2d')
 ctx.fillStyle = 'white';
 ctx.strokeStyle = 'red';
 ctx.lineWidth = 5;
+
 class Humanoid {
     constructor(name, x, y, color, width, height) {
         this.name = name
@@ -38,7 +48,6 @@ class Humanoid {
         this.speedX = 2
         this.alive = true
         this.win = false
-        // this.level = 0
     }
 
     render() {
@@ -52,6 +61,7 @@ class Humanoid {
 
 class Obstacle {
     constructor(x, y, color, width, height) {
+        this.name = name
         this.x = x
         this.y = y
         this.color = color
@@ -62,8 +72,13 @@ class Obstacle {
         this.alive = false
     }
     render() {
-        ctx.fillStyle = this.color
-        ctx.fillRect(this.x, this.y, this.width, this.height, this.gravitySpeed += this.gravity)
+        if (this.name === 'floor'){
+            grassImg(this.x, this.y)
+        } else {
+            // flagImg(this.x, this.y)
+            ctx.fillStyle = this.color
+            ctx.fillRect(this.x, this.y, this.width, this.height, this.gravitySpeed += this.gravity)
+        }
     }
 }
 
@@ -77,12 +92,12 @@ function floorCollision(obj) {
 
 function rePaint(){
     ctx.clearRect(0,0, gameArea.width, gameArea.height)
+    ctx.fillStyle = 'white';
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
     ctx.fillText(`Level: ${level}`, 800, 50)
     hero.render()
     floor.render()
-    // enemy.render()
     flag.render()
     hero.y += hero.gravity
     bullet.x += bullet.speedX
@@ -205,12 +220,13 @@ function randomNumber(min, max) {
     return Math.random() * (max - min) + min
 }
 const floor = new Obstacle(0, 400, "green", 1600, 100)
-let hero = new Humanoid('hero', 50, 280, "red", 40, 80)
-let enemy = new Humanoid('enemy', randomNumber(60, 1400), 325, "blue", 40, 50)
-let enemy1 = new Humanoid('enemy1', randomNumber(60, 1400), 325, "blue", 40, 50)
-let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 325, "blue", 40, 50)
-let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 325, "blue", 40, 50)
-let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 325, "blue", 40, 50)
+floor.name = "floor"
+let hero = new Humanoid('hero', 50, 280, "red", 10, 50)
+let enemy = new Humanoid('enemy', randomNumber(60, 1400), 325, "blue", 20, 50)
+let enemy1 = new Humanoid('enemy1', randomNumber(60, 1400), 325, "blue", 20, 50)
+let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 325, "blue", 20, 50)
+let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 325, "blue", 20, 50)
+let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 325, "blue", 20, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
 let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3)
 enemy.alive = true
@@ -220,7 +236,7 @@ enemy3.alive = false
 enemy4.alive = false
 const enemies = [enemy, enemy1, enemy2, enemy3, enemy4]
 
-function activateEnemies(){ // HOW CAN I MAKE THIS RUN WHEN LEVEL CHANGES
+function activateEnemies(){
 if (level === 1) {
     enemy.alive = true
 }
@@ -246,11 +262,14 @@ if (level === 4) {
 }
 let running = setInterval(rePaint, 1000/60)
 
-document.getElementById("reset").addEventListener('click', function(hero, enemy) {
-    clearInterval(running)
+document.getElementById("reset").addEventListener('click', function(hero) {
     level = 1
-    hero = new Humanoid('hero', 50, 330, "red", 40, 80)
-    enemy = new Humanoid('enemy', randomNumber(60, 1400), 325, "blue", 40, 50)
+    // hero = new Humanoid('hero', 50, 330, "red", 40, 80)
+    hero.alive = true;
+    hero.x = 50;
+    hero.y = 300;
+    enemy = new Humanoid('enemy', randomNumber(500, 1400), 325, "blue", 40, 50)
+    clearInterval(running)
     running = setInterval(rePaint, 1000/60)
 })
 
@@ -303,15 +322,8 @@ function lose() {
     }
 }
 
-
-
-
-// setInterval(moveEnemyUp(enemy), 2000)
-// setInterval(moveEnemyDown(enemy), 4000)
 //NOTES
 
-// Give enemies random patterns
-// give enemies and hero images
 // give flagpole an image
 // Sound?
 
