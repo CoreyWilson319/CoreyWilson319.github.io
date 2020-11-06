@@ -260,9 +260,7 @@ if (level === 4) {
     enemy4.alive = true
 }
 }
-function gameOn(){
-let running = setInterval(rePaint, 1000/60)
-}
+
 
 document.getElementById("reset").addEventListener('click', function(hero) {
     level = 1
@@ -271,8 +269,9 @@ document.getElementById("reset").addEventListener('click', function(hero) {
     hero.x = 20;
     hero.y = 300;
     enemy = new Humanoid('enemy', randomNumber(500, 1400), 325, "blue", 40, 50)
-    clearInterval(running)
-    running = setInterval(rePaint, 1000/60)
+    gameLive = true
+    gameOn()
+    
 })
 
 document.addEventListener('keyup', function(evt) {
@@ -315,7 +314,7 @@ function bulletRender(){
     }
 }
 
-function lose() {
+function lose(running) {
     if (hero.alive === false) {
         ctx.font = "30px Arial";
         ctx.textAlign = "center";
@@ -323,6 +322,15 @@ function lose() {
         clearInterval(running)
     }
 }
+
+let gameLive = true
+function gameOn(){
+    if (gameLive === true){
+let running = setInterval(rePaint, 1000/60)
+} else {lose(running)}
+    return running}
+
+gameOn()
 
 //NOTES
 
