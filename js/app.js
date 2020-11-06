@@ -260,13 +260,15 @@ if (level === 4) {
     enemy4.alive = true
 }
 }
+function gameOn(){
 let running = setInterval(rePaint, 1000/60)
+}
 
 document.getElementById("reset").addEventListener('click', function(hero) {
     level = 1
     // hero = new Humanoid('hero', 50, 330, "red", 40, 80)
     hero.alive = true;
-    hero.x = 50;
+    hero.x = 20;
     hero.y = 300;
     enemy = new Humanoid('enemy', randomNumber(500, 1400), 325, "blue", 40, 50)
     clearInterval(running)
