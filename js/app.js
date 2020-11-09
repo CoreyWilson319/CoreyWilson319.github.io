@@ -262,9 +262,10 @@ if (level === 4) {
 
 document.addEventListener('keyup', function(evt) {
     if (evt.key === 'f') {
-        bullet = new Obstacle(hero.x, (hero.y+30), "orange", 20, 3)
+        bullet = new Obstacle(hero.x, (hero.y+30), "red", 20, 3)
         bullet.alive = true
         bullet.render()
+        bulletFired.play()
     }
 })
 
@@ -277,6 +278,7 @@ function playerHit(enemynum){ // See if I can pass in a list of enemies as the p
         hero.y < enemynum.y + enemynum.height &&
         hero.y + hero.height > enemynum.y) {
          hero.alive = false
+         playerHitSound.play()
          clearInterval(running)
         }
     }}
@@ -354,13 +356,9 @@ function sound(src) {
   }
 const myMusic = new sound("media/background.mp3")
 const enemyHitSound = new sound("media/enemyhit.mp3")
-const playerHitSound = new sound("media/playerhit.mp3") // need sound
-const bulletFired = new sound("media/shot.mp3") // need sound
+const playerHitSound = new sound("media/playerhit.mp3")
+const bulletFired = new sound("media/shot.mp3")
 const playButton = document.getElementById("play")
 addEventListener('click', function() {
     myMusic.play()
 })
-
-//NOTES
-
-// Sound?
