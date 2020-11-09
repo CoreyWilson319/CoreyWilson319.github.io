@@ -52,8 +52,9 @@ class Humanoid {
 
     render() {
         if (this.name === 'hero'){
-                heroImg(this.x, this.y)
-             // } else { enemyImg(this.x, this.y)
+            heroImg(this.x, this.y)
+        // } else { enemyImg(this.x, this.y)}
+        } else {
         ctx.fillStyle = this.color
         ctx.fillRect(this.x, this.y, this.width, this.height)
     }
