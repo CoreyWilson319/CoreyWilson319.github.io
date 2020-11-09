@@ -81,7 +81,10 @@ class Obstacle {
         }
     }
 }
-
+function levelUpdate() {
+    let domLevel = document.getElementById('level')
+    domLevel.innerText = level
+}
 function floorCollision(obj) {
     if (obj.y > 330) {
         obj.y = 330;
@@ -95,7 +98,7 @@ function rePaint(){
     ctx.fillStyle = 'white';
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
-    ctx.fillText(`Level: ${level}`, 800, 100)
+    // ctx.fillText(`Level: ${level}`, 800, 100)
     hero.render()
     floor.render()
     flag.render()
