@@ -68,7 +68,7 @@ class Obstacle {
         this.width = width
         this.height = height
         this.solid = true
-        this.speedX = 2
+        this.speedX = 4
         this.alive = false
     }
     render() {
@@ -222,11 +222,11 @@ function randomNumber(min, max) {
 const floor = new Obstacle(0, 400, "green", 1600, 100)
 floor.name = "floor"
 let hero = new Humanoid('hero', 50, 280, "red", 10, 50)
-let enemy = new Humanoid('enemy', randomNumber(60, 1400), 325, "blue", 20, 50)
-let enemy1 = new Humanoid('enemy1', randomNumber(60, 1400), 325, "blue", 20, 50)
-let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 325, "blue", 20, 50)
-let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 325, "blue", 20, 50)
-let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 325, "blue", 20, 50)
+let enemy = new Humanoid('enemy', randomNumber(60, 1400), 325, "red", 20, 50)
+let enemy1 = new Humanoid('enemy1', randomNumber(60, 1400), 325, "red", 20, 50)
+let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 325, "red", 20, 50)
+let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 325, "red", 20, 50)
+let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 325, "red", 20, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
 let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3)
 enemy.alive = true
