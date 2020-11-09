@@ -304,7 +304,7 @@ function lose(running) {
     }
 }
 
-let running = setInterval(repaint, 1000/60)
+let running = ''
 let gameLive = true
 function gameOn(){
     if (gameLive === true){
@@ -356,4 +356,9 @@ const bulletFired = new sound("media/shot.mp3")
 const playButton = document.getElementById("play")
 document.getElementById('play').addEventListener('click', function() {
     myMusic.play()
+    gameOn()
+})
+
+document.getElementById("stop").addEventListener('click', function(){
+    myMusic.stop()
 })

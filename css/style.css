@@ -6,10 +6,9 @@ body {
 #container {
     display: grid;
     grid-template-areas: "top" "top" "top",
-                        "description" "description" "description",
+                        "description",
                         "level",
-                        "canvas" "canvas" "canvas",
-                        "play" "play",
+                        "canvas",
                         "bottom" "footer" "bottom",
 }
 
@@ -40,7 +39,6 @@ body {
     display: grid;
     background-color: white;
     background-image: url("background.png"); 
-    /* I think this needs to be changed so that the level will display???? */
     z-index: -10;
     background-size: cover;
     grid-area: "canvas";
@@ -49,15 +47,24 @@ body {
     height: 500px;
     border: 1px solid black;
 }
-
+#bottom {
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+}
 #play {
-    grid-area: "play";
+    grid-column: 1;
+    color: rgba(255, 255, 0, 0.616);
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+#stop {
+    grid-column: 2;
     color: rgba(255, 255, 0, 0.616);
     font-family: 'Press Start 2P', cursive;
     text-align: center;
 }
 #reset {
-    grid-area: "play";
+    grid-column: 3;
     color: rgba(255, 255, 0, 0.616);
     font-family: 'Press Start 2P', cursive;
     text-align: center;
