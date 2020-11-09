@@ -229,11 +229,7 @@ enemy2.alive = false
 enemy3.alive = false
 enemy4.alive = false
 const enemies = [enemy, enemy1, enemy2, enemy3, enemy4] 
-// enemies.push(enemy)
-// enemies.push(enemy1)
-// enemies.push(enemy2)
-// enemies.push(enemy3)
-// enemies.push(enemy4)
+
 
 function activateEnemies(){
 if (level === 1) {
@@ -279,6 +275,7 @@ function playerHit(enemynum){ // See if I can pass in a list of enemies as the p
         hero.y + hero.height > enemynum.y) {
          hero.alive = false
          playerHitSound.play()
+         myMusic.stop()
          clearInterval(running)
         }
     }}
@@ -329,7 +326,11 @@ document.getElementById("reset").addEventListener('click', function() {
     gameLive = true;
     hero.x = 20;
     hero.y = 300;
-    enemy = new Humanoid('enemy', randomNumber(500, 1400), 325, "blue", 40, 50)
+    enemy.x = randomNumber(500, 1400)
+    enemy1.x = randomNumber(500, 1400)
+    enemy2.x = randomNumber(500, 1400)
+    enemy3.x = randomNumber(500, 1400)
+    enemy4.x = randomNumber(500, 1400)
     enemy.alive = true
     enemy1.alive = false
     enemy2.alive = false
@@ -343,9 +344,6 @@ document.getElementById("reset").addEventListener('click', function() {
 function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
     document.body.appendChild(this.sound);
     this.play = function(){
       this.sound.play();
@@ -359,6 +357,6 @@ const enemyHitSound = new sound("media/enemyhit.mp3")
 const playerHitSound = new sound("media/playerhit.mp3")
 const bulletFired = new sound("media/shot.mp3")
 const playButton = document.getElementById("play")
-addEventListener('click', function() {
+document.getElementById('play').addEventListener('click', function() {
     myMusic.play()
 })
