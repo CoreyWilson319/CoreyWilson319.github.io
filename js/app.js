@@ -59,6 +59,7 @@ class Humanoid {
         // ctx.fillRect(this.x, this.y, this.width, this.height)
     }
 }
+
 class Obstacle {
     constructor(x, y, color, width, height) {
         this.name = name
@@ -93,7 +94,7 @@ function floorCollision(obj) {
         obj.gravity = 2.5;}      
     } 
 
-function rePaint(){
+function repaint(){
     ctx.clearRect(0,0, gameArea.width, gameArea.height)
     ctx.fillStyle = 'white';
     ctx.font = "30px Arial";
@@ -101,6 +102,7 @@ function rePaint(){
     // ctx.fillText(`Level: ${level}`, 800, 100)
     levelUpdate()
     hero.render()
+    renderEnemy()
     floor.render()
     flag.render()
     hero.y += hero.gravity
@@ -108,7 +110,6 @@ function rePaint(){
     floorCollision(hero)
     flagCollision(hero)
     xVelocity(hero)
-    renderEnemy()
     for (let i = 0; i < enemies.length; i++) {
         playerHit(enemies[i])
         enemyHit(enemies[i])
@@ -203,6 +204,7 @@ document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
         if (hero.y > 300){
         hero.y -= 250}
+        //
     } else if (evt.key === 'a') {
         hero.x -= 10
     } else if (evt.key === 'd') {
@@ -307,11 +309,11 @@ function lose(running) {
     }
 }
 
-let running = setInterval(rePaint, 1000/60)
+let running = setInterval(repaint, 1000/60)
 let gameLive = true
 function gameOn(){
     if (gameLive === true){
-    running = setInterval(rePaint, 500/30)
+    running = setInterval(repaint, 500/30)
     } if (gameLive === false && hero.alive === false) {
         ctx.font = "30px Arial";
         ctx.textAlign = "center";
