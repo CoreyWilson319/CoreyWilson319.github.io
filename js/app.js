@@ -134,7 +134,7 @@ function flagCollision() {
         hero.y + hero.y > flag.y) {
         let gameWin = true
         if (gameWin === true) {
-            hero = new Humanoid('hero', 50, 330, "red", 40, 80) // can probably just change x position
+            hero = new Humanoid('hero', 50, 330, "red", 40, 80)
             level = level + 1;
             activateEnemies()
             if (gameWin === true && level === 5) {
