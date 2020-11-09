@@ -52,10 +52,10 @@ class Humanoid {
 
     render() {
         if (this.name === 'hero'){
-            heroImg(this.x, this.y)
-        } else { enemyImg(this.x, this.y)}
-        // ctx.fillStyle = this.color
-        // ctx.fillRect(this.x, this.y, this.width, this.height)
+                heroImg(this.x, this.y)
+             // } else { enemyImg(this.x, this.y)
+        ctx.fillStyle = this.color
+        ctx.fillRect(this.x, this.y, this.width, this.height)
     }
 }
 
@@ -310,6 +310,7 @@ function lose(running) {
         ctx.fillText("YOU LOSE!", 800, 100)
     }
 }
+
 let running = setInterval(rePaint, 1000/60)
 let gameLive = true
 function gameOn(){
