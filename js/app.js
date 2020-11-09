@@ -185,7 +185,7 @@ function renderEnemy(){
             enemy2.render()
         }
         if (enemy3.alive === true){
-            enemy4.render()
+            enemy3.render()
         }
     }
     if (level === 4) {
@@ -199,7 +199,7 @@ function renderEnemy(){
             enemy2.render()
         }
         if (enemy3.alive === true){
-            enemy4.render()
+            enemy3.render()
         }
         if (enemy4.alive === true){
             enemy4.render()
