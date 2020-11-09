@@ -68,7 +68,7 @@ class Obstacle {
         this.width = width
         this.height = height
         this.solid = true
-        this.speedX = 4
+        this.speedX = 10
         this.alive = false
     }
     render() {
