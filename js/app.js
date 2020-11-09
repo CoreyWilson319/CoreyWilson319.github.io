@@ -53,12 +53,12 @@ class Humanoid {
     render() {
         if (this.name === 'hero'){
             heroImg(this.x, this.y)
-        // } else { enemyImg(this.x, this.y)}
-        } else {
-        ctx.fillStyle = this.color
-        ctx.fillRect(this.x, this.y, this.width, this.height)
+        } else { enemyImg(this.x, this.y)}
+        // } else {
+        // ctx.fillStyle = this.color
+        // ctx.fillRect(this.x, this.y, this.width, this.height)
     }
-}}
+}
 class Obstacle {
     constructor(x, y, color, width, height) {
         this.name = name
@@ -112,8 +112,8 @@ function rePaint(){
     for (let i = 0; i <= enemies.length; i++) {
         enemyHit(enemies[i])
     }
-    for (let i = 0; i <= enemies.length; i++) {
-        playerHit(enemies[i])
+    for (let n = 0; n <= enemies.length; n++) {
+        playerHit(enemies[n])
     }
     // enemyHit(enemy)
     // enemyHit(enemy1)
@@ -241,7 +241,12 @@ enemy1.alive = false
 enemy2.alive = false
 enemy3.alive = false
 enemy4.alive = false
-const enemies = [enemy, enemy1, enemy2, enemy3, enemy4]
+const enemies = [enemy, enemy1, enemy2, enemy3, enemy4] 
+// enemies.push(enemy)
+// enemies.push(enemy1)
+// enemies.push(enemy2)
+// enemies.push(enemy3)
+// enemies.push(enemy4)
 
 function activateEnemies(){
 if (level === 1) {
