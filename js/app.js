@@ -95,7 +95,7 @@ function rePaint(){
     ctx.fillStyle = 'white';
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
-    ctx.fillText(`Level: ${level}`, 800, 50)
+    ctx.fillText(`Level: ${level}`, 800, 100)
     hero.render()
     floor.render()
     flag.render()
