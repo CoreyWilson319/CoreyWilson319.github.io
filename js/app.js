@@ -8,21 +8,21 @@ gameArea.width = width.replace('px', '')
 let level = 1
 
 function heroImg(x, y){
-const imgPath = "images/hero.png"
+const imgPath = "media/hero.png"
 let imgObj = new Image();
 imgObj.src = imgPath
 imgObj.onload = function(){
     ctx.drawImage(imgObj, x, y)
 }}
 function grassImg(x, y){
-const imgPath = "images/grass.png"
+const imgPath = "media/grass.png"
 let imgObj = new Image();
 imgObj.src = imgPath
 imgObj.onload = function(){
     ctx.drawImage(imgObj, x, y)
 }}
 function enemyImg(x, y){
-const imgPath = 'images/enemy.png'
+const imgPath = 'media/enemy.png'
 let imgObj = new Image();
 imgObj.src = imgPath
 imgObj.onload = function(){
@@ -68,7 +68,7 @@ class Obstacle {
         this.width = width
         this.height = height
         this.solid = true
-        this.speedX = 10
+        this.speedX = 20
         this.alive = false
     }
     render() {
@@ -109,27 +109,13 @@ function rePaint(){
     flagCollision(hero)
     xVelocity(hero)
     renderEnemy()
-    // for (let i = 0; i <= enemies.length; i++) {
-    //     enemyHit(enemies[i])
-    // }
-    // for (let n = 0; n <= enemies.length; n++) {
-    //     playerHit(enemies[n])
-    // }
-    enemyHit(enemy)
-    enemyHit(enemy1)
-    enemyHit(enemy2)
-    enemyHit(enemy3)
-    enemyHit(enemy4)
-    playerHit(enemy)
-    playerHit(enemy1)
-    playerHit(enemy2)
-    playerHit(enemy3)
-    playerHit(enemy4)
+    for (let i = 0; i < enemies.length; i++) {
+        playerHit(enemies[i])
+        enemyHit(enemies[i])
+        moveEnemy(enemies[i])
+    }
     bulletRender()
     lose()
-    moveEnemy(enemy)
-
-    
 }
 function moveEnemy(obj) {
     if (obj.x > hero.x) {
@@ -215,7 +201,8 @@ function renderEnemy(){
 }
 document.addEventListener('keydown', function(evt) {
     if (evt.key === ' ') {
-        hero.y -= 250
+        if (hero.y > 300){
+        hero.y -= 250}
     } else if (evt.key === 'a') {
         hero.x -= 10
     } else if (evt.key === 'd') {
@@ -229,11 +216,11 @@ function randomNumber(min, max) {
 const floor = new Obstacle(0, 400, "green", 1600, 100)
 floor.name = "floor"
 let hero = new Humanoid('hero', 50, 280, "red", 10, 50)
-let enemy = new Humanoid('enemy', randomNumber(60, 1400), 325, "red", 20, 50)
-let enemy1 = new Humanoid('enemy1', randomNumber(60, 1400), 325, "red", 20, 50)
-let enemy2 = new Humanoid('enemy2', randomNumber(60, 1400), 325, "red", 20, 50)
-let enemy3 = new Humanoid('enemy3', randomNumber(60, 1400), 325, "red", 20, 50)
-let enemy4 = new Humanoid('enemy4', randomNumber(60, 1400), 325, "red", 20, 50)
+let enemy = new Humanoid('enemy', randomNumber(80, 1400), 325, "red", 20, 50)
+let enemy1 = new Humanoid('enemy1', randomNumber(100, 1400), 325, "red", 20, 50)
+let enemy2 = new Humanoid('enemy2', randomNumber(250, 1400), 325, "red", 20, 50)
+let enemy3 = new Humanoid('enemy3', randomNumber(350, 1400), 325, "red", 20, 50)
+let enemy4 = new Humanoid('enemy4', randomNumber(500, 1400), 325, "red", 20, 50)
 const flag = new Obstacle(1400, 0, "gold", 10, 500)
 let bullet = new Obstacle(hero.x, hero.y+30, "orange", 20, 3)
 enemy.alive = true
@@ -291,20 +278,18 @@ function playerHit(enemynum){ // See if I can pass in a list of enemies as the p
         hero.y + hero.height > enemynum.y) {
          hero.alive = false
          clearInterval(running)
-         console.log(`Player Hit by ${enemynum.name} Game Over`)
         }
     }}
 
 function enemyHit(enemynum){ // See if I can pass in a list of enemies as the parameter
-if (bullet.x < enemynum.x + enemynum.width &&
+    if (bullet.x < enemynum.x + enemynum.width &&
     bullet.x + bullet.width > enemynum.x &&
     bullet.y < enemynum.y + enemynum.height &&
     bullet.y + bullet.height > enemynum.y &&
     enemynum.alive === true && bullet.alive === true){
-        console.log(`${enemynum.name} has been hit`)
      bullet.alive = false
-     
      enemynum.alive = false
+     enemyHitSound.play()
     }
 }
 
@@ -351,6 +336,29 @@ document.getElementById("reset").addEventListener('click', function() {
     gameLive = true
     gameOn()
     
+})
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+      this.sound.play();
+    }
+    this.stop = function(){
+      this.sound.pause();
+    }
+  }
+const myMusic = new sound("media/background.mp3")
+const enemyHitSound = new sound("media/enemyhit.mp3")
+const playerHitSound = new sound("media/playerhit.mp3") // need sound
+const bulletFired = new sound("media/shot.mp3") // need sound
+const playButton = document.getElementById("play")
+addEventListener('click', function() {
+    myMusic.play()
 })
 
 //NOTES

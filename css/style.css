@@ -8,7 +8,7 @@ body {
                         "description" "description" "description",
                         "level",
                         "canvas" "canvas" "canvas",
-                        "play",
+                        "play" "play",
                         "bottom" "footer" "bottom",
 }
 
@@ -48,6 +48,11 @@ body {
     border: 1px solid black;
 }
 
+#play {
+    grid-area: "play";
+    color: rgba(255, 255, 0, 0.616);
+    text-align: center;
+}
 #reset {
     grid-area: "play";
     color: rgba(255, 255, 0, 0.616);
