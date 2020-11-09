@@ -83,7 +83,7 @@ class Obstacle {
 }
 function levelUpdate() {
     let domLevel = document.getElementById('level')
-    domLevel.innerText = level
+    domLevel.innerText = `Level: ${level}`
 }
 function floorCollision(obj) {
     if (obj.y > 330) {
@@ -109,19 +109,22 @@ function rePaint(){
     flagCollision(hero)
     xVelocity(hero)
     renderEnemy()
-    // for (let i = 0; i <= enemies.length; i++) {
-    //     enemyHit(enemies[i])
-    // }
-    enemyHit(enemy)
-    enemyHit(enemy1)
-    enemyHit(enemy2)
-    enemyHit(enemy3)
-    enemyHit(enemy4)
-    playerHit(enemy)
-    playerHit(enemy1)
-    playerHit(enemy2)
-    playerHit(enemy3)
-    playerHit(enemy4)
+    for (let i = 0; i <= enemies.length; i++) {
+        enemyHit(enemies[i])
+    }
+    for (let i = 0; i <= enemies.length; i++) {
+        playerHit(enemies[i])
+    }
+    // enemyHit(enemy)
+    // enemyHit(enemy1)
+    // enemyHit(enemy2)
+    // enemyHit(enemy3)
+    // enemyHit(enemy4)
+    // playerHit(enemy)
+    // playerHit(enemy1)
+    // playerHit(enemy2)
+    // playerHit(enemy3)
+    // playerHit(enemy4)
     bulletRender()
     lose()
     moveEnemy(enemy)
