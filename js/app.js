@@ -327,7 +327,7 @@ let running = setInterval(rePaint, 1000/60)
 let gameLive = true
 function gameOn(){
     if (gameLive === true){
-    running = setInterval(rePaint, 1000/60)
+    running = setInterval(rePaint, 500/30)
     } if (gameLive === false && hero.alive === false) {
         ctx.font = "30px Arial";
         ctx.textAlign = "center";
@@ -343,6 +343,11 @@ document.getElementById("reset").addEventListener('click', function() {
     hero.x = 20;
     hero.y = 300;
     enemy = new Humanoid('enemy', randomNumber(500, 1400), 325, "blue", 40, 50)
+    enemy.alive = true
+    enemy1.alive = false
+    enemy2.alive = false
+    enemy3.alive = false
+    enemy4.alive = false
     gameLive = true
     gameOn()
     
