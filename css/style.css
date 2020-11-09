@@ -34,6 +34,7 @@ body {
     color: yellow;
     font-size: 40px;
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
 }
 #game-area {
     display: grid;
@@ -52,11 +53,13 @@ body {
 #play {
     grid-area: "play";
     color: rgba(255, 255, 0, 0.616);
+    font-family: 'Press Start 2P', cursive;
     text-align: center;
 }
 #reset {
     grid-area: "play";
     color: rgba(255, 255, 0, 0.616);
+    font-family: 'Press Start 2P', cursive;
     text-align: center;
 }
 #footer {

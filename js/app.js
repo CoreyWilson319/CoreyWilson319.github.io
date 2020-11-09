@@ -54,9 +54,6 @@ class Humanoid {
         if (this.name === 'hero'){
             heroImg(this.x, this.y)
         } else { enemyImg(this.x, this.y)}
-        // } else {
-        // ctx.fillStyle = this.color
-        // ctx.fillRect(this.x, this.y, this.width, this.height)
     }
 }
 
@@ -76,7 +73,6 @@ class Obstacle {
         if (this.name === 'floor'){
             grassImg(this.x, this.y)
         } else {
-            // flagImg(this.x, this.y)
             ctx.fillStyle = this.color
             ctx.fillRect(this.x, this.y, this.width, this.height, this.gravitySpeed += this.gravity)
         }
@@ -99,7 +95,6 @@ function repaint(){
     ctx.fillStyle = 'white';
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
-    // ctx.fillText(`Level: ${level}`, 800, 100)
     levelUpdate()
     hero.render()
     renderEnemy()
@@ -269,7 +264,7 @@ document.addEventListener('keyup', function(evt) {
 
 
 
-function playerHit(enemynum){ // See if I can pass in a list of enemies as the parameter
+function playerHit(enemynum){
     if (enemynum.alive === true){
     if (hero.x < enemynum.x + enemynum.width &&
         hero.x + hero.width > enemynum.x &&
@@ -282,7 +277,7 @@ function playerHit(enemynum){ // See if I can pass in a list of enemies as the p
         }
     }}
 
-function enemyHit(enemynum){ // See if I can pass in a list of enemies as the parameter
+function enemyHit(enemynum){
     if (bullet.x < enemynum.x + enemynum.width &&
     bullet.x + bullet.width > enemynum.x &&
     bullet.y < enemynum.y + enemynum.height &&
