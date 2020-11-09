@@ -306,6 +306,7 @@ function lose(running) {
     if (hero.alive === false) {
         ctx.font = "30px Arial";
         ctx.textAlign = "center";
+        ctx.color = 'blue'
         ctx.fillText("YOU LOSE!", 800, 100)
     }
 }
