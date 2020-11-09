@@ -250,7 +250,6 @@ if (level === 3) {
     enemy1.alive = true
     enemy2.alive = true
     enemy3.alive = true
-    enemy4.alive = true
 }
 if (level === 4) {
     enemy.alive = true
