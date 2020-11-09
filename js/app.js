@@ -109,22 +109,22 @@ function rePaint(){
     flagCollision(hero)
     xVelocity(hero)
     renderEnemy()
-    for (let i = 0; i <= enemies.length; i++) {
-        enemyHit(enemies[i])
-    }
-    for (let n = 0; n <= enemies.length; n++) {
-        playerHit(enemies[n])
-    }
-    // enemyHit(enemy)
-    // enemyHit(enemy1)
-    // enemyHit(enemy2)
-    // enemyHit(enemy3)
-    // enemyHit(enemy4)
-    // playerHit(enemy)
-    // playerHit(enemy1)
-    // playerHit(enemy2)
-    // playerHit(enemy3)
-    // playerHit(enemy4)
+    // for (let i = 0; i <= enemies.length; i++) {
+    //     enemyHit(enemies[i])
+    // }
+    // for (let n = 0; n <= enemies.length; n++) {
+    //     playerHit(enemies[n])
+    // }
+    enemyHit(enemy)
+    enemyHit(enemy1)
+    enemyHit(enemy2)
+    enemyHit(enemy3)
+    enemyHit(enemy4)
+    playerHit(enemy)
+    playerHit(enemy1)
+    playerHit(enemy2)
+    playerHit(enemy3)
+    playerHit(enemy4)
     bulletRender()
     lose()
     moveEnemy(enemy)
