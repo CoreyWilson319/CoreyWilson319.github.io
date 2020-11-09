@@ -58,8 +58,7 @@ class Humanoid {
         ctx.fillStyle = this.color
         ctx.fillRect(this.x, this.y, this.width, this.height)
     }
-}
-
+}}
 class Obstacle {
     constructor(x, y, color, width, height) {
         this.name = name
