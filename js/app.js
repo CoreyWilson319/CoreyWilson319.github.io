@@ -104,7 +104,7 @@ function repaint(){
     bullet.x += bullet.speedX
     floorCollision(hero)
     flagCollision(hero)
-    xVelocity(hero)
+    momentum(hero)
     for (let i = 0; i < enemies.length; i++) {
         playerHit(enemies[i])
         enemyHit(enemies[i])
@@ -122,7 +122,7 @@ function moveEnemy(obj) {
     }
 }
 
-function xVelocity(obj) {
+function momentum(obj) {
     if (obj.y > 330) {
         obj.x += obj.speedX
     }
