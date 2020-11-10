@@ -295,7 +295,7 @@ function bulletRender(){
     }
 }
 
-function lose(running) {
+function lose() {
     if (hero.alive === false) {
         ctx.font = "30px Arial";
         ctx.textAlign = "center";
@@ -323,11 +323,9 @@ document.getElementById("reset").addEventListener('click', function() {
     gameLive = true;
     hero.x = 20;
     hero.y = 300;
-    enemy.x = randomNumber(500, 1400)
-    enemy1.x = randomNumber(500, 1400)
-    enemy2.x = randomNumber(500, 1400)
-    enemy3.x = randomNumber(500, 1400)
-    enemy4.x = randomNumber(500, 1400)
+    for (let i = 0; i < enemies; i++) {
+        enemies[i].x = randomNumber(500, 1400)
+    }
     enemy.alive = true
     enemy1.alive = false
     enemy2.alive = false

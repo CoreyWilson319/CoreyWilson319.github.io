@@ -1,5 +1,11 @@
 # blasterboy
 
+### Description
+The game is ran by using most of the functions in the repaint function. The game updates position of the hero and enemies as well as giving them images everytime it is ran. It constantly checks for collision on objects that the collision functions apply to. And I believe that technically at all times the enemies are created when the page is loaded. However to prevent there being invisible enemies after they are created their alive value is set to false and only set to true if certain conditions are met. Functions like the activate enemies function cannot be ran inside of the repaint function because it will constantly set enemies to alive even after they are killed. So in this case it is ran whenever collision is made with the flag pole. Issues include a flicker that I believe is due to the repaint function waiting for the images from the img functions that give images to the objects. This does not occur if the objects were just made using javascript rectangles.
+
+
+
+
 ## heroImg
 This function gives the hero.png I made to the hero object
 
