@@ -324,8 +324,8 @@ document.getElementById("reset").addEventListener('click', function() {
     gameLive = true;
     hero.x = 20;
     hero.y = 300;
-    for (let i = 0; i < enemies; i++) {
-        enemies[i].x = randomNumber(500, 1400)
+    for (let i = 0; i < enemies.length; i++) {
+        enemies[i].x = randomNumber(800, 1400)
     }
     enemy.alive = true
     enemy1.alive = false
