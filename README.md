@@ -39,7 +39,7 @@ rePaint is running all of our major functions that make the game run such as col
 
 This function make the enemy objects move closer to the hero's x position and if they get behind the hero they move slower toward the player. If they moved faster the they would make the game more difficult
 
-## xVelocity
+## momentum
 Still working on this one the goal is to have the player carry momentum while in the air. As of now the player must repress a key to continue movement after jumping.
 
 ## flagCollision
