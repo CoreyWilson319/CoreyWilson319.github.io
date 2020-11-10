@@ -301,6 +301,7 @@ function lose() {
         ctx.textAlign = "center";
         ctx.color = 'blue'
         ctx.fillText("YOU LOSE!", 800, 100)
+        clearInterval(running)
     }
 }
 
